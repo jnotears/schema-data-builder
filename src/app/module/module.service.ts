@@ -18,4 +18,9 @@ export class ModuleService{
     const opts = new HttpHeaders().set('apikey', this.apikey);
     return this.http.post(`https://fkqjnoaomqvozccywmsq.functions.supabase.co/module-r`, {module_id: id}, {headers: opts});
   }
+
+  creatModuleData(data: any){
+    const opts = new HttpHeaders().set('apikey', this.apikey);
+    return this.http.post(`https://fkqjnoaomqvozccywmsq.functions.supabase.co/module-c`, data, {headers: opts});
+  }
 }
