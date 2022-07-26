@@ -15,6 +15,7 @@ import { MOCKCONFIG } from './mock';
     FormsModule,
     ReactiveFormsModule,
     FormioModule
+
   ],
   template: `
     <formio [form]="formConfig" (submit)="onSubmit($event)"></formio>
