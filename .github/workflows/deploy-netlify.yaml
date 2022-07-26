@@ -1,0 +1,26 @@
+name: deploy netlify
+on:
+  push:
+    branches: [master]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install angular-cli
+        run: npm install @angular/cli@latest --force
+      - name: build
+        run: npm run build
+      - name: deploy
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './dist/schema-data-builder'
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
